@@ -38,6 +38,7 @@ jobs:
         run: |
           echo "tag=${{ inputs.tag }}" >> $GITHUB_OUTPUT
           echo "status=${{ inputs.build-status }}" >> $GITHUB_OUTPUT
+          echo "::error file=app.js,line=1::Missing semicolon"
     outputs:
       build-status: ${{ steps.build.outputs.status }}
       tag: ${{ inputs.tag }}
