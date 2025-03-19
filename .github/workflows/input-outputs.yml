@@ -31,6 +31,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Create annotation for build error
+        run: echo "::error file=app.js,line=1::Missing semicolon"
       - name: Print GITHUB_OUTPUT path
         run: echo $GITHUB_OUTPUT
       - name: Build
@@ -38,7 +40,6 @@ jobs:
         run: |
           echo "tag=${{ inputs.tag }}" >> $GITHUB_OUTPUT
           echo "status=${{ inputs.build-status }}" >> $GITHUB_OUTPUT
-          echo "::error file=app.js,line=1::Missing semicolon"
     outputs:
       build-status: ${{ steps.build.outputs.status }}
       tag: ${{ inputs.tag }}
